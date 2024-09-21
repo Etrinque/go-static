@@ -1,7 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"context"
+	"os"
 )
 
 const DIST string = "./dist"
@@ -16,10 +17,13 @@ func main() {
 	// fmt.Println(err)
 	// fmt.Println(DIST)
 
-	fmt.Println("Copying Files To Distribution Directory")
-	copyFiles(STATIC, DIST)
+	// fmt.Println("Copying Files To Distribution Directory")
+	// copyFiles(STATIC, DIST)
 
-	fmt.Println("Generating Sites From Content Directory")
-	genContent(CONTENT, TEMPLATE, DIST)
+	// fmt.Println("Generating Sites From Content Directory")
+	// genContent(CONTENT, TEMPLATE, DIST)
+
+	component := hello("Eric")
+	component.Render(context.Background(), os.Stdout)
 
 }
