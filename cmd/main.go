@@ -1,9 +1,8 @@
 package main
 
 import (
-	"context"
 	"fmt"
-	"os"
+	"go-static/server"
 	"runtime"
 )
 
@@ -23,10 +22,10 @@ func main() {
 	// fmt.Println("Generating Sites From Content Directory")
 	// genContent(CONTENT, TEMPLATE, DIST)
 
-	component := hello("Eric")
-	component.Render(context.Background(), os.Stdout)
+	// component := hello("Eric")
+	// component.Render(context.Background(), os.Stdout)
 	PrintMemUsage()
-
+	server.Serve()
 }
 
 func PrintMemUsage() {
