@@ -19,11 +19,11 @@ Projects like:
 ## TechStack
 
 - GO 1.23+
-- TEMPL@latest
+- [TEMPL](https://templ.guide/)
 
 ## Mechanism
 
- Go-Static is a simple lexical anaylsis and parser that creates an AST. [^1]
+ Go-Static is a simple lexical anaylsis and parser that creates an AST[^1] and renders HTML out.
 
 1. The lexer steps through the file, creates, and organizes Tokens into Tree Nodes.
 
