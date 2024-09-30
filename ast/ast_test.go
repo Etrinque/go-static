@@ -9,10 +9,10 @@ import (
 )
 
 func TestMDMap(t *testing.T) {
-	var md *MDBlockTag
+	var md *MDTagMap
 
-	typemap := md.GenMap()
-	fmt.Printf("TEST MAP: %v", typemap)
+	tagmap := md.GenMap()
+	fmt.Printf("TEST MAP: %v", tagmap)
 	val := []string{
 		"",
 		"#",
@@ -59,7 +59,7 @@ func TestMDMap(t *testing.T) {
 
 	// TODO: rework to test for both keys:vals for:for double assert
 	for _, nodeVal := range val {
-		ok := assert.Contains(t, typemap, nodeVal)
+		ok := assert.Contains(t, tagmap, nodeVal)
 		if !ok {
 			log.Errorf("map did not contian: %v", nodeVal)
 		}
@@ -67,11 +67,11 @@ func TestMDMap(t *testing.T) {
 }
 
 func TestHTMLMap(t *testing.T) {
-	var ht *HTMLBlockTag
+	// var ht *HTMLTagMap
 
-	typemap := ht.GenMap()
+	// typemap := ht.GenMap()
 
-	val := []string{}
+	// val := []string{}
 
 }
 
