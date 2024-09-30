@@ -1,6 +1,8 @@
 package ast
 
-import "time"
+import (
+	"time"
+)
 
 type MDRoot struct {
 	MDMeta
@@ -9,13 +11,18 @@ type MDRoot struct {
 
 type MDNode struct {
 	TagType  *MDType
-	BLockTag *MDBlockTag
+	BLockTag *MDTagMap
 	Content  *Content
 }
 
 type MDType struct {
 	Name string
-	Tag  string
+	Tag  *MDTag
+}
+
+type MDTag struct {
+	open  string
+	close string
 }
 
 type MDMeta struct {
@@ -25,47 +32,45 @@ type MDMeta struct {
 }
 
 // BlockTag is the representation of MD tags, mapped to the TagLabel
-type MDBlockTag map[string]string
+type MDTagMap map[string]MDTag
 
 // Content is a section of Markdown after being parsed that retains the BlockTag Open, Close, and the Content within tags
 type Content struct {
-	TagLabel     *MDBlockTag
+	TagLabel     *MDTagMap
 	Open         string
 	Close        string
 	InnerContent string
 }
 
-func (MDBlockTag) GenMap() map[string]string {
-	var MdTypeMap = map[string]string{
-		"":       "NONE",            //  " "
-		"#":      "H1",              //	#
-		"##":     "H2",              //	##
-		"###":    "H3",              //	###
-		"####":   "H4",              //	####
-		"#####":  "H5",              //	#####
-		"######": "H6",              //	######
-		"*":      "ITALIC",          //	* text *
-		"**":     "BOLD",            //	** text **
-		">":      "BLOCKQUOTE",      //	>
-		"1.":     "ORDERED_LIST",    //	1. 2. 3. etc.
-		"- ":     "UNORDERED_LIST",  //	- Item - Item - Item etc.
-		"`":      "CODE",            //	` code here `
-		"---":    "HORIZONTAL_RULE", //	---
-		"[":      "LINK",            //	[title](link)
-		"![":     "IMAGE",           // ![alt text](img link)
-		"| ":     "TABLE",           // |	Thing1	 |	Thing2	|
-		"```":    "FENCED_CODE",     //	```	   Code here	```
-		"[^":     "FOOTNOTE",        // [^1]
-		" : ":    "DEFINITION_LIST", //term : definition
-		"~~~ ":   "STRIKETHROUGH",   // ~~~ text ~~~
-		"-[":     "TASK_LIST",       //-[x] -[] -[] etc.
-		"== ":    "HIGHLIGHT",       // == IMPORTANT TEXT ==
-		// "":"HEADING_ID",      	 // ### HEADING {#custom-id}
-		// "":"EMOJI",           	 // Who Cares
-		// "":"SUBSCRIPT",       	 //H~2~0
-		// "":"SUPERSCRIPT"     	 //X^2^
+func (MDTagMap) GenMap() map[string]MDTag {
+	var MdTagMap = map[string]MDTag{
+		"NONE":       {open: "", close: ""},
+		"HEADING_1":  {open: "#", close: ""},
+		"HEADING_2":  {open: "##", close: ""},
+		"HEADING_3":  {open: "###", close: ""},
+		"HEADING_4":  {open: "####", close: ""},
+		"HEADING_5":  {open: "#####", close: ""},
+		"HEADING_6":  {open: "######", close: ""},
+		"ITALIC":     {open: "*", close: "*"},
+		"BOLD":       {open: "**", close: "**"},
+		"BLOCKQUOTE": {open: ">", close: ""},
+		// "ORDERED_LIST":    {open: fmt.Sprintf("%d."), close: ""},
+		"UNORDERED_LIST":  {open: "- ", close: ""},
+		"CODE":            {open: "`", close: "`"},
+		"FENCED_CODE":     {open: "```", close: "```"},
+		"STRIKETHROUGH":   {open: "~~~", close: ""},
+		"HORIZONTAL_RULE": {open: "---", close: ""},
+		"HIGHLIGHT":       {open: "==", close: "=="},
+		// TODO: add link/IMG support
+		// "LINK":  {open: fmt.Sprintf("[%s](%s)"), close: ""},
+		// "IMAGE": {open: fmt.Sprintf("![%s](%s)"), close: ""},
+		//
+		"TABLE":           {open: "| ", close: " |"},
+		"DEFINITION_LIST": {open: " : ", close: ""},
+		// "FOOTNOTE":        {open: fmt.Sprintf("[^%d]"), close: ""},
+		// "TASK_LIST":       {open: fmt.Sprintf("-[%s]"), close: ""},
 	}
-	return MdTypeMap
+	return MdTagMap
 }
 
 const (
