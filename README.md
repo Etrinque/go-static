@@ -1,3 +1,4 @@
+! WIP -NON FUNCTIONAL AT THIS TIME
 # Go-Static
 
 ![go-static](./go-static.svg)
