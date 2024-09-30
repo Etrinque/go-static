@@ -18,7 +18,7 @@ type Headers struct {
 
 type HTMLNode struct {
 	TagType  *HTMLType
-	BlockTag *HTMLBlockTag
+	BlockTag *HTMLTagMap
 	Content  *Content
 }
 
@@ -34,7 +34,7 @@ type HTMLTag struct {
 
 type Template *templ.Component
 
-type HTMLBlockTag map[string]HTMLTag
+type HTMLTagMap map[string]HTMLTag
 
 var link string
 var imgLink string
@@ -42,8 +42,8 @@ var imgTxt string
 
 // TODO: Add support for HMTL Tables. Maybe Struct of Structs of Elements?
 
-func (h *HTMLBlockTag) GenMap() {
-	var HTMLTypeMap = map[string]HTMLTag{
+func (h *HTMLTagMap) GenMap() *HTMLTagMap {
+	HTMLTagMap := HTMLTagMap{
 		"NONE":            {open: "", close: ""},
 		"HEADER":          {open: "<header>", close: "</header>"},
 		"META":            {open: "<meta>", close: "</meta>"},
@@ -66,4 +66,5 @@ func (h *HTMLBlockTag) GenMap() {
 		"LINK":            {open: fmt.Sprintf("<a href=\" %v \">", link), close: "</a>"},
 		"IMAGE":           {open: fmt.Sprintf("<img src=\" %v \" alt=\" %v \">", imgLink, imgTxt), close: ""},
 	}
+	return &HTMLTagMap
 }
