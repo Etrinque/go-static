@@ -1,6 +1,7 @@
 package ast
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/gofiber/fiber/v2/log"
@@ -8,8 +9,10 @@ import (
 )
 
 func TestMDMap(t *testing.T) {
-	typemap := GenMap()
+	var md *MDBlockTag
 
+	typemap := md.GenMap()
+	fmt.Printf("TEST MAP: %v", typemap)
 	val := []string{
 		"",
 		"#",
@@ -63,6 +66,13 @@ func TestMDMap(t *testing.T) {
 	}
 }
 
-func TestHTMLMap(t *testing.T) {}
+func TestHTMLMap(t *testing.T) {
+	var ht *HTMLBlockTag
+
+	typemap := ht.GenMap()
+
+	val := []string{}
+
+}
 
 func TestTreeGen(t *testing.T) {}
