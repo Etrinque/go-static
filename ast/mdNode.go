@@ -2,33 +2,40 @@ package ast
 
 import "time"
 
+type MDRoot struct {
+	MDMeta
+	MDNode
+}
+
 type MDNode struct {
-	BlockType *NType
-	BLockTag  map[string]string
-	Content   *Content
-	Meta      *Meta
+	TagType  *MDType
+	BLockTag *MDBlockTag
+	Content  *Content
 }
 
-type NType struct {
-	mdTag string
+type MDType struct {
+	Name string
+	Tag  string
 }
 
-type Meta struct {
+type MDMeta struct {
+	Tag       string
 	createdAt time.Time
+	updatedAt time.Time
 }
 
 // BlockTag is the representation of MD tags, mapped to the TagLabel
-type BlockTag map[string]string
+type MDBlockTag map[string]string
 
 // Content is a section of Markdown after being parsed that retains the BlockTag Open, Close, and the Content within tags
 type Content struct {
-	TagLabel     *BlockTag
+	TagLabel     *MDBlockTag
 	Open         string
 	Close        string
 	InnerContent string
 }
 
-func GenMap() map[string]string {
+func (MDRoot) GenMap() map[string]string {
 	var MdTypeMap = map[string]string{
 		"":       "NONE",            //  " "
 		"#":      "H1",              //	#
@@ -82,13 +89,11 @@ const (
 	STRIKETHROUGH   = "~~~" //	~~~ text ~~~
 	TASK_LIST       = "-["  // -[x] -[] -[] etc.
 	HIGHLIGHT       = "=="  // 	== IMPORTANT TEXT ==
-// UNORDERED_LIST  = "[ - + " " ] - Item - Item - Item etc.
-// ORDERED_LIST    = "[ digit + . ] 1. 2. 3. etc.
-// HEADING_ID      = "### HEADING {#custom-id}
-// DEFINITION_LIST = "term : definition
-// EMOJI           = "Who Cares
-// SUBSCRIPT       = "H~2~0	[ ~ <any character> ~ ]
-// SUPERSCRIPT     = "X^2^ 	[^ <any character> ^]
+	// UNORDERED_LIST  = "[ - + " " ] - Item - Item - Item etc.
+	// ORDERED_LIST    = "[ digit + . ] 1. 2. 3. etc.
+	// HEADING_ID      = "### HEADING {#custom-id}
+	// DEFINITION_LIST = "term : definition
+	// EMOJI           = "Who Cares
+	// SUBSCRIPT       = "H~2~0	[ ~ <any character> ~ ]
+	// SUPERSCRIPT     = "X^2^ 	[^ <any character> ^]
 )
-
-var typemap = GenMap()
