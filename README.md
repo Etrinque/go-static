@@ -1,6 +1,7 @@
 # Go-Static
 
 ![go-static](./go-static.svg)
+[^1]
 
 ## Pupose
 
@@ -23,7 +24,7 @@ Projects like:
 
 ## Mechanism
 
- Go-Static is a simple lexical anaylsis and parser that creates an AST[^1] and renders HTML out.
+ Go-Static is a simple lexical anaylsis and parser that creates an AST[^2] and renders HTML out.
 
 1. The lexer steps through the file, creates, and organizes Tokens into Tree Nodes.
 
@@ -33,4 +34,5 @@ Projects like:
 
 4. Finally the file is distributed to the website directory to be used immediately in hosting.
 
-[^1]: [Abstract Syntax Tree - Wiki](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
+[^1]: Go-Static Illustration by Eric Trinque.
+[^2]: [Abstract Syntax Tree - Wiki](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
