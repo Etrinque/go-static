@@ -1,10 +1,10 @@
 # Go-Static
 
-A static site generator written in GO.
+![go-static](./go-static.svg)
 
 ## Pupose
 
-Go-Static is a simple, general purpose Markdown to HTML conversion tool written in GO and utilizing [Templ](https://templ.guide/).
+Go-Static is a simple, general purpose Markdown to HTML static site generation tool written in GO and utilizing [Templ](https://templ.guide/).
 
 The creation of Go-Static is strictly for my education and usage in my own personal website project.  Primarily for blog content. Markdown has a nice, simple and concise syntax and allows for great creativity in writing.  It is a great fit for simple pages, blogs, news articles, general information pages, etc.
 
@@ -29,7 +29,7 @@ Projects like:
 
 2. The Tree Nodes are then stepped through and used to populate the HTML template backed by TEMPL.
 
-3. The template is then rendered into output of HTML code file that follows site guidelines for style and functionality.
+3. The template is then rendered into output comprised of an HTML code file that follows site guidelines for style and functionality.
 
 4. Finally the file is distributed to the website directory to be used immediately in hosting.
 

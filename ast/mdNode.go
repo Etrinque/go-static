@@ -90,3 +90,5 @@ const (
 // SUBSCRIPT       = "H~2~0	[ ~ <any character> ~ ]
 // SUPERSCRIPT     = "X^2^ 	[^ <any character> ^]
 )
+
+var typemap = genMap()
