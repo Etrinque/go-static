@@ -35,7 +35,7 @@ type Content struct {
 	InnerContent string
 }
 
-func (MDRoot) GenMap() map[string]string {
+func (MDBlockTag) GenMap() map[string]string {
 	var MdTypeMap = map[string]string{
 		"":       "NONE",            //  " "
 		"#":      "H1",              //	#
