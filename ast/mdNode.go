@@ -28,7 +28,7 @@ type Content struct {
 	InnerContent string
 }
 
-func genMap() map[string]string {
+func GenMap() map[string]string {
 	var MdTypeMap = map[string]string{
 		"":       "NONE",            //  " "
 		"#":      "H1",              //	#
@@ -49,12 +49,12 @@ func genMap() map[string]string {
 		"| ":     "TABLE",           // |	Thing1	 |	Thing2	|
 		"```":    "FENCED_CODE",     //	```	   Code here	```
 		"[^":     "FOOTNOTE",        // [^1]
+		" : ":    "DEFINITION_LIST", //term : definition
+		"~~~ ":   "STRIKETHROUGH",   // ~~~ text ~~~
+		"-[":     "TASK_LIST",       //-[x] -[] -[] etc.
+		"== ":    "HIGHLIGHT",       // == IMPORTANT TEXT ==
 		// "":"HEADING_ID",      	 // ### HEADING {#custom-id}
-		" : ":  "DEFINITION_LIST", //term : definition
-		"~~~ ": "STRIKETHROUGH",   // ~~~ text ~~~
-		"-[":   "TASK_LIST",       //-[x] -[] -[] etc.
 		// "":"EMOJI",           	 // Who Cares
-		"== ": "HIGHLIGHT", // == IMPORTANT TEXT ==
 		// "":"SUBSCRIPT",       	 //H~2~0
 		// "":"SUPERSCRIPT"     	 //X^2^
 	}
@@ -91,4 +91,4 @@ const (
 // SUPERSCRIPT     = "X^2^ 	[^ <any character> ^]
 )
 
-var typemap = genMap()
+var typemap = GenMap()

@@ -5,6 +5,7 @@ go 1.23.0
 require (
 	github.com/a-h/templ v0.2.778
 	github.com/gofiber/fiber v1.14.6
+	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/stretchr/testify v1.9.0
 )
 
