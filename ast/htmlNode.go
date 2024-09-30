@@ -1,5 +1,10 @@
 package ast
 
+type HTMLRoot struct {
+	Template *Template
+	Headers
+}
+
 type HTMLNode struct {
 	TagType  *HTMLType
 	BlockTag *HTMLBlockTag
@@ -15,6 +20,8 @@ type Headers struct {
 	Tag  string
 	Meta *MDMeta
 }
+
+type Template templ.
 
 type HTMLBlockTag map[string]string
 
