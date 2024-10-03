@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"go-static/server"
 	"runtime"
 )
 
@@ -14,7 +13,6 @@ const SITE_GEN_ERROR string = "error gen item"
 
 func main() {
 	fmt.Println("Static Site gen")
-	fmt.Println(DIST)
 
 	// fmt.Println("Copying Files To Distribution Directory")
 	// copyFiles(STATIC, DIST)
@@ -25,7 +23,7 @@ func main() {
 	// component := hello("Eric")
 	// component.Render(context.Background(), os.Stdout)
 	PrintMemUsage()
-	server.Serve()
+
 }
 
 func PrintMemUsage() {

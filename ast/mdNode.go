@@ -25,6 +25,8 @@ type MDTag struct {
 	close string
 }
 
+// MDMeta is the relative file data, creation, author and update.
+// It is NOT a part of the markdown content.
 type MDMeta struct {
 	Tag       string
 	createdAt time.Time
