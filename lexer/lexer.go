@@ -15,6 +15,7 @@ func New(input []byte) *Lexer {
 	lex := &Lexer{
 		input: input,
 	}
+	lex.readChar()
 	return lex
 }
 
