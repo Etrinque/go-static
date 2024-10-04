@@ -6,7 +6,7 @@ import (
 )
 
 func TestReadFile(t *testing.T) {
-	file, _ := ReadFile("C:/Users/SOLVD/github_repos/go-static/content/markdown-cheat-sheet.md")
+	file, _ := ReadFile("")
 	// p := parser.NewParser(file)
 	fmt.Println(string(file))
 }
