@@ -26,9 +26,21 @@ func NewParser(input []byte) *Parser {
 }
 
 func ReadFile(path string) ([]byte, error) {
-	buf, err := os.ReadFile(path)
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+
+	defer file.Close()
+
+	buf, err := os.ReadFile(file.Name())
 	if err != nil {
 		return nil, err
 	}
 	return buf, nil
 }
+
+// This need some research on file meta parsing, Notably os.FileInfo
+// func GetFileMeta(file *os.File) *ast.MDMeta {
+// 	return &ast.MDMeta{Name: file.Name()}
+// }
