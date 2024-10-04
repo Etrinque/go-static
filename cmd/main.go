@@ -8,7 +8,6 @@ import (
 const DIST string = "./dist"
 const CONTENT string = "./content"
 const TEMPLATE string = "./template.html"
-const STATIC string = "./static"
 const SITE_GEN_ERROR string = "error gen item"
 
 func main() {
