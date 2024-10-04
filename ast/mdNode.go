@@ -28,7 +28,8 @@ type MDTag struct {
 // MDMeta is the relative file data, creation, author and update.
 // It is NOT a part of the markdown content.
 type MDMeta struct {
-	Tag       string
+	Name      string
+	Size      int64
 	createdAt time.Time
 	updatedAt time.Time
 }
@@ -46,29 +47,29 @@ type Content struct {
 
 func (MDTagMap) GenMap() map[string]MDTag {
 	var MdTagMap = map[string]MDTag{
-		"NONE":       {open: "", close: ""},
-		"HEADING_1":  {open: "#", close: ""},
-		"HEADING_2":  {open: "##", close: ""},
-		"HEADING_3":  {open: "###", close: ""},
-		"HEADING_4":  {open: "####", close: ""},
-		"HEADING_5":  {open: "#####", close: ""},
-		"HEADING_6":  {open: "######", close: ""},
-		"ITALIC":     {open: "*", close: "*"},
-		"BOLD":       {open: "**", close: "**"},
-		"BLOCKQUOTE": {open: ">", close: ""},
-		// "ORDERED_LIST":    {open: fmt.Sprintf("%d."), close: ""},
-		"UNORDERED_LIST":  {open: "- ", close: ""},
+		"NONE":            {open: "", close: ""},
+		"HEADING_1":       {open: "#", close: ""},
+		"HEADING_2":       {open: "##", close: ""},
+		"HEADING_3":       {open: "###", close: ""},
+		"HEADING_4":       {open: "####", close: ""},
+		"HEADING_5":       {open: "#####", close: ""},
+		"HEADING_6":       {open: "######", close: ""},
+		"ITALIC":          {open: "*", close: "*"},
+		"BOLD":            {open: "**", close: "**"},
+		"BLOCKQUOTE":      {open: ">", close: ""},
 		"CODE":            {open: "`", close: "`"},
 		"FENCED_CODE":     {open: "```", close: "```"},
 		"STRIKETHROUGH":   {open: "~~~", close: ""},
 		"HORIZONTAL_RULE": {open: "---", close: ""},
 		"HIGHLIGHT":       {open: "==", close: "=="},
+		"TABLE":           {open: "| ", close: " |"},
+		"DEFINITION_LIST": {open: " : ", close: ""},
+		"UNORDERED_LIST":  {open: "- ", close: ""},
+		// "ORDERED_LIST":    {open: fmt.Sprintf("%d."), close: ""},
 		// TODO: add link/IMG support
 		// "LINK":  {open: fmt.Sprintf("[%s](%s)"), close: ""},
 		// "IMAGE": {open: fmt.Sprintf("![%s](%s)"), close: ""},
 		//
-		"TABLE":           {open: "| ", close: " |"},
-		"DEFINITION_LIST": {open: " : ", close: ""},
 		// "FOOTNOTE":        {open: fmt.Sprintf("[^%d]"), close: ""},
 		// "TASK_LIST":       {open: fmt.Sprintf("-[%s]"), close: ""},
 	}
