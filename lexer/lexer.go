@@ -1,9 +1,8 @@
 package lexer
 
-import "strings"
-
 import (
 	"go-static/ast"
+	"strings"
 )
 
 /*
@@ -81,7 +80,7 @@ func (lex *Lexer) isDigit(char byte) bool {
 
 func (lex *Lexer) checkTagMap(tagmap ast.MDTagMap) bool {
 	var chars = "!["
-	for k, _ := range tagmap {
+	for k := range tagmap {
 		if chars != k {
 			return false
 		} else {
