@@ -5,13 +5,13 @@ import (
 )
 
 type MDRoot struct {
-	MDMeta
-	MDNode
+	Meta     *MDMeta
+	NodeTree []*MDNode
 }
 
 type MDNode struct {
 	TagType  *MDType
-	BLockTag *MDTagMap
+	BlockTag *MDTagMap
 	Content  *Content
 }
 
