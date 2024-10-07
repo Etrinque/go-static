@@ -40,9 +40,9 @@ func ReadFile(path string) ([]byte, error) {
 	return buf, nil
 }
 
-func buildNode() {}
+func buildNode() *ast.MDNode {}
 
-func buildBlocks() {}
+func buildTree() {}
 
 // This need some research on file meta parsing, Notably os.FileInfo
 // func GetFileMeta(file *os.File) *ast.MDMeta {
