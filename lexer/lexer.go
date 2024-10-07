@@ -2,6 +2,10 @@ package lexer
 
 import "strings"
 
+import (
+	"go-static/ast"
+)
+
 /*
 package Lexer is responsiple for the lexical analysis of MD files.  It implements the ast/mdnode elements. Lexer is implemented by the Parser pkg. It crawls through the document char by char and tracks it position and relative chars
 */
@@ -70,6 +74,31 @@ func (lex *Lexer) isAlpha(char byte) bool {
 func (lex *Lexer) isDigit(char byte) bool {
 	if char >= '0' && char <= '9' {
 		return true
+	}
+
+	return false
+}
+
+func (lex *Lexer) nextChar() {}
+
+// buildStr walks through input and builds tags as they come based on the tagMap
+func (lex *Lexer) buildStr() string {
+	return ""
+}
+
+func (lex *Lexer) checkTagMap(tagmap ast.MDTagMap) bool {
+	var chars = "!["
+	for k, _ := range tagmap {
+		if chars != k {
+			return false
+		} else {
+			switch chars {
+			case "![":
+				return true
+			default:
+				return true
+			}
+		}
 	}
 
 	return false
