@@ -79,13 +79,6 @@ func (lex *Lexer) isDigit(char byte) bool {
 	return false
 }
 
-func (lex *Lexer) nextChar() {}
-
-// buildStr walks through input and builds tags as they come based on the tagMap
-func (lex *Lexer) buildStr() string {
-	return ""
-}
-
 func (lex *Lexer) checkTagMap(tagmap ast.MDTagMap) bool {
 	var chars = "!["
 	for k, _ := range tagmap {
