@@ -19,7 +19,7 @@ type Headers struct {
 type HTMLNode struct {
 	TagType  *HTMLType
 	BlockTag *HTMLTagMap
-	Content  *Content
+	Content  []byte
 }
 
 type HTMLType struct {

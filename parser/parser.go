@@ -40,7 +40,14 @@ func ReadFile(path string) ([]byte, error) {
 	return buf, nil
 }
 
-func buildNode() *ast.MDNode {}
+func buildNode(tags *ast.MDTag, content []byte) *ast.MDNode {
+	node := ast.MDNode{
+		Tags:    tags,
+		Content: content,
+	}
+
+	return &node
+}
 
 func buildTree() {}
 

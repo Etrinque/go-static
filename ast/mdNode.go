@@ -10,9 +10,8 @@ type MDRoot struct {
 }
 
 type MDNode struct {
-	TagType  *MDType
-	BlockTag *MDTagMap
-	Content  *Content
+	Tags    *MDTag
+	Content []byte
 }
 
 type MDType struct {
@@ -38,12 +37,6 @@ type MDMeta struct {
 type MDTagMap map[string]MDTag
 
 // Content is a section of Markdown after being parsed that retains the BlockTag Open, Close, and the Content within tags
-type Content struct {
-	TagLabel     *MDTagMap
-	Open         string
-	Close        string
-	InnerContent string
-}
 
 func (MDTagMap) GenMap() map[string]MDTag {
 	var MdTagMap = map[string]MDTag{
