@@ -78,20 +78,16 @@ func (lex *Lexer) isDigit(char byte) bool {
 	return false
 }
 
-func (lex *Lexer) checkTagMap(tagmap ast.MDTagMap) bool {
-	var chars = "!["
-	for k := range tagmap {
-		if chars != k {
-			return false
-		} else {
-			switch chars {
-			case "![":
-				return true
-			default:
+func (lex *Lexer) checkTagMap(char []byte, tagmap ast.MDTagMap) bool {
+	var chars = string(char)
+	for _, v := range tagmap {
+		if strings.Contains(v.Open, chars) {
+			if chars == v.Open {
 				return true
 			}
+		} else {
+			return false
 		}
 	}
-
 	return false
 }
