@@ -20,8 +20,8 @@ type MDType struct {
 }
 
 type MDTag struct {
-	open  string
-	close string
+	Open  string
+	Close string
 }
 
 // MDMeta is the relative file data, creation, author and update.
@@ -40,24 +40,24 @@ type MDTagMap map[string]MDTag
 
 func (MDTagMap) GenMap() map[string]MDTag {
 	var MdTagMap = map[string]MDTag{
-		"NONE":            {open: "", close: ""},
-		"HEADING_1":       {open: "#", close: ""},
-		"HEADING_2":       {open: "##", close: ""},
-		"HEADING_3":       {open: "###", close: ""},
-		"HEADING_4":       {open: "####", close: ""},
-		"HEADING_5":       {open: "#####", close: ""},
-		"HEADING_6":       {open: "######", close: ""},
-		"ITALIC":          {open: "*", close: "*"},
-		"BOLD":            {open: "**", close: "**"},
-		"BLOCKQUOTE":      {open: ">", close: ""},
-		"CODE":            {open: "`", close: "`"},
-		"FENCED_CODE":     {open: "```", close: "```"},
-		"STRIKETHROUGH":   {open: "~~~", close: ""},
-		"HORIZONTAL_RULE": {open: "---", close: ""},
-		"HIGHLIGHT":       {open: "==", close: "=="},
-		"TABLE":           {open: "| ", close: " |"},
-		"DEFINITION_LIST": {open: " : ", close: ""},
-		"UNORDERED_LIST":  {open: "- ", close: ""},
+		"NONE":            {Open: "", Close: ""},
+		"HEADING_1":       {Open: "#", Close: ""},
+		"HEADING_2":       {Open: "##", Close: ""},
+		"HEADING_3":       {Open: "###", Close: ""},
+		"HEADING_4":       {Open: "####", Close: ""},
+		"HEADING_5":       {Open: "#####", Close: ""},
+		"HEADING_6":       {Open: "######", Close: ""},
+		"ITALIC":          {Open: "*", Close: "*"},
+		"BOLD":            {Open: "**", Close: "**"},
+		"BLOCKQUOTE":      {Open: ">", Close: ""},
+		"CODE":            {Open: "`", Close: "`"},
+		"FENCED_CODE":     {Open: "```", Close: "```"},
+		"STRIKETHROUGH":   {Open: "~~~", Close: "~~~"},
+		"HORIZONTAL_RULE": {Open: "---", Close: ""},
+		"HIGHLIGHT":       {Open: "==", Close: "=="},
+		"TABLE":           {Open: "| ", Close: " |"},
+		"DEFINITION_LIST": {Open: " : ", Close: ""},
+		"UNORDERED_LIST":  {Open: "- ", Close: ""},
 		// "ORDERED_LIST":    {open: fmt.Sprintf("%d."), close: ""},
 		// TODO: add link/IMG support
 		// "LINK":  {open: fmt.Sprintf("[%s](%s)"), close: ""},
@@ -71,25 +71,25 @@ func (MDTagMap) GenMap() map[string]MDTag {
 
 const (
 	NONE            = ""
-	H1              = "#"
-	H2              = "##"
-	H3              = "###"
-	H4              = "####"
-	H5              = "#####"
-	H6              = "######"
-	ITALIC          = "*"  //	* text *
-	BOLD            = "**" //	** text **
+	HEADING_1       = "# "
+	HEADING_2       = "## "
+	HEADING_3       = "### "
+	HEADING_4       = "#### "
+	HEADING_5       = "##### "
+	HEADING_6       = "###### "
+	HIGHLIGHT       = "== " // 	== IMPORTANT TEXT ==
+	ITALIC          = "*"   //	* text *
+	BOLD            = "**"  //	** text **
 	BLOCKQUOTE      = ">"
-	CODE            = "`" //	` code here `
-	HORIZONTAL_RULE = "---"
-	LINK            = "["   //	[title](link)
-	IMAGE           = "!["  // 	[alt text](img link)
-	TABLE           = "|"   // |	Thing1	 |	Thing2	|
+	CODE            = "`"   //	` code here `
 	FENCED_CODE     = "```" // ``` Code here	```
-	FOOTNOTE        = "[^"  //	[^1]
 	STRIKETHROUGH   = "~~~" //	~~~ text ~~~
-	TASK_LIST       = "-["  // -[x] -[] -[] etc.
-	HIGHLIGHT       = "=="  // 	== IMPORTANT TEXT ==
+	HORIZONTAL_RULE = "---"
+	TABLE           = "|"  // |	Thing1	 |	Thing2	|
+	LINK            = "["  //	[title](link)
+	IMAGE           = "![" // 	[alt text](img link)
+	FOOTNOTE        = "[^" //	[^1]
+	TASK_LIST       = "-[" // -[x] -[] -[] etc.
 	// UNORDERED_LIST  = "[ - + " " ] - Item - Item - Item etc.
 	// ORDERED_LIST    = "[ digit + . ] 1. 2. 3. etc.
 	// HEADING_ID      = "### HEADING {#custom-id}
@@ -98,3 +98,26 @@ const (
 	// SUBSCRIPT       = "H~2~0	[ ~ <any character> ~ ]
 	// SUPERSCRIPT     = "X^2^ 	[^ <any character> ^]
 )
+
+var tagList = []string{
+	NONE,
+	HEADING_1,
+	HEADING_2,
+	HEADING_3,
+	HEADING_4,
+	HEADING_5,
+	HEADING_6,
+	HIGHLIGHT,
+	ITALIC,
+	BOLD,
+	BLOCKQUOTE,
+	CODE,
+	FENCED_CODE,
+	STRIKETHROUGH,
+	HORIZONTAL_RULE,
+	TABLE,
+	LINK,
+	IMAGE,
+	FOOTNOTE,
+	TASK_LIST,
+}
