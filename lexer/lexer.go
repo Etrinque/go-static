@@ -10,28 +10,28 @@ package Lexer is responsiple for the lexical analysis of MD files.  It implement
 */
 
 type Lexer struct {
-	input        []byte
-	position     int
-	readPosition int
-	char         byte
+	Input        []byte
+	Position     int
+	ReadPosition int
+	Char         byte
 }
 
 func New(input []byte) *Lexer {
 	lex := &Lexer{
-		input: input,
+		Input: input,
 	}
 	lex.readChar()
 	return lex
 }
 
 func (lex *Lexer) readChar() {
-	if lex.readPosition >= len(lex.input) {
-		lex.char = 0
+	if lex.ReadPosition >= len(lex.Input) {
+		lex.Char = 0
 	} else {
-		lex.char = lex.input[lex.readPosition]
+		lex.Char = lex.Input[lex.ReadPosition]
 	}
-	lex.position = lex.readPosition
-	lex.readPosition += 1
+	lex.Position = lex.ReadPosition
+	lex.ReadPosition += 1
 }
 
 func (lex *Lexer) nextChar(char byte) {}
@@ -76,11 +76,10 @@ func (lex *Lexer) isDigit(char byte) bool {
 	return false
 }
 
-func (lex *Lexer) checkTagMap(char []byte, tagmap ast.MDTagMap) bool {
-	var chars = string(char)
+func (lex *Lexer) CheckTagMap(char string, tagmap ast.MDTagMap) bool {
 	for _, v := range tagmap {
-		if strings.Contains(v.Open, chars) {
-			if chars == v.Open {
+		if strings.Contains(v.Open, char) {
+			if char == v.Open {
 				return true
 			}
 		} else {

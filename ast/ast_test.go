@@ -2,10 +2,9 @@ package ast
 
 import (
 	"fmt"
-	"testing"
-
-	"github.com/gofiber/fiber/v2/log"
 	"github.com/stretchr/testify/assert"
+	"log"
+	"testing"
 )
 
 func TestMDMap(t *testing.T) {
@@ -61,7 +60,7 @@ func TestMDMap(t *testing.T) {
 	for _, nodeVal := range val {
 		ok := assert.Contains(t, tagmap, nodeVal)
 		if !ok {
-			log.Errorf("map did not contian: %v", nodeVal)
+			log.Printf("map did not contian: %v", nodeVal)
 		}
 	}
 }
