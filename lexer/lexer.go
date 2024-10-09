@@ -38,8 +38,6 @@ func (lex *Lexer) nextChar(char byte) {}
 
 func (lex *Lexer) peekChar() {}
 
-func (lex *Lexer) lexTag() {}
-
 func (lex *Lexer) buildTag(char byte) []byte {
 	var tag []byte
 
