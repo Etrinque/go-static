@@ -1,7 +1,6 @@
 package lexer
 
 import (
-	"go-static/ast"
 	"strings"
 )
 
@@ -73,18 +72,5 @@ func (lex *Lexer) isDigit(char byte) bool {
 		return true
 	}
 
-	return false
-}
-
-func (lex *Lexer) CheckTagMap(char string, tagmap ast.MDTagMap) bool {
-	for _, v := range tagmap {
-		if strings.Contains(v.Open, char) {
-			if char == v.Open {
-				return true
-			}
-		} else {
-			return false
-		}
-	}
 	return false
 }
