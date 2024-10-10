@@ -40,9 +40,9 @@ func ReadFile(path string) ([]byte, error) {
 	return buf, nil
 }
 
-func buildNode(tags *ast.MDTag, content []byte) *ast.MDNode {
+func buildNode(nodeType *ast.MDType, content []byte) *ast.MDNode {
 	node := ast.MDNode{
-		Tags:    tags,
+		Type:    nodeType,
 		Content: content,
 	}
 
