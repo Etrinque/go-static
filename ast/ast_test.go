@@ -1,18 +1,18 @@
 package ast
 
 import (
-	"fmt"
-	"github.com/stretchr/testify/assert"
-	"log"
+	"maps"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestMDMap(t *testing.T) {
 	var md *MDTagMap
 
 	tagmap := md.GenMap()
-	fmt.Printf("TEST MAP: %v", tagmap)
-	val := []string{
+	t.Logf("TEST MAP: %v", tagmap)
+	testval := []string{
 		"",
 		"#",
 		"##",
@@ -37,30 +37,36 @@ func TestMDMap(t *testing.T) {
 		"-[",
 		"== "}
 
-	// key := []string{"NONE",
-	// 	"H1",
-	// 	"H2",
-	// 	"H4",
-	// 	"H6",
-	// 	"BOLD",
-	// 	"BLOCKQUOTE",
-	// 	"CODE",
-	// 	"HORIZONTAL_RULE",
-	// 	"LINK",
-	// 	"IMAGE",
-	// 	"TABLE",
-	// 	"FENCED_CODE",
-	// 	"FOOTNOTE",
-	// 	"STRIKETHROUGH",
-	// 	"TASK_LIST",
-	// 	"HIGHLIGHT",
-	// }
-
 	// TODO: rework to test for both keys:vals for:for double assert
-	for _, nodeVal := range val {
-		ok := assert.Contains(t, tagmap, nodeVal)
+	tags := maps.Values[MDTagMap](tagmap)
+	for v := range tags {
+		tag := v.Open
+		for _, test := range testval {
+			ok := assert.Contains(t, tag, test)
+			if !ok {
+				t.Errorf("map did not contian: %v", test)
+			}
+			return
+		}
+	}
+}
+
+func TestCheckTagmap(t *testing.T) {
+	var md *MDTagMap
+	var tt = []string{"**", "*", "***", "a", "# ", "### "}
+
+	tagmap := md.GenMap()
+	if tagmap == nil {
+		t.Errorf("error initializing map got=%v", tagmap)
+	}
+
+	for _, s := range tt {
+		ok, err := CheckTagMap(s, tagmap)
 		if !ok {
-			log.Printf("map did not contian: %v", nodeVal)
+			t.Logf("failure to match: %s, got=%s", s, tagmap)
+		}
+		if err != nil {
+			t.Error(err)
 		}
 	}
 }

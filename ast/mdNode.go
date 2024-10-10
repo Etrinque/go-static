@@ -1,6 +1,7 @@
 package ast
 
 import (
+	"strings"
 	"time"
 )
 
@@ -10,7 +11,7 @@ type MDRoot struct {
 }
 
 type MDNode struct {
-	Tags    *MDTag
+	Type    *MDType
 	Content []byte
 }
 
@@ -33,12 +34,12 @@ type MDMeta struct {
 	updatedAt time.Time
 }
 
-// BlockTag is the representation of MD tags, mapped to the TagLabel
+// MDTagMap is the representation of MD tags, mapped to the TagLabel
 type MDTagMap map[string]MDTag
 
 // Content is a section of Markdown after being parsed that retains the BlockTag Open, Close, and the Content within tags
 
-func (MDTagMap) GenMap() map[string]MDTag {
+func (md *MDTagMap) GenMap() map[string]MDTag {
 	var MdTagMap = map[string]MDTag{
 		"NONE":            {Open: "", Close: ""},
 		"HEADING_1":       {Open: "#", Close: ""},
@@ -67,6 +68,19 @@ func (MDTagMap) GenMap() map[string]MDTag {
 		// "TASK_LIST":       {open: fmt.Sprintf("-[%s]"), close: ""},
 	}
 	return MdTagMap
+}
+
+// TODO: change logic to receive only string or slice of string, convert to map method
+func CheckTagMap(char string, tagmap MDTagMap) (bool, error) {
+	for _, v := range tagmap {
+		if strings.Contains(v.Open, char) {
+			if char == v.Open {
+				return true, nil
+			}
+			continue
+		}
+	}
+	return false, nil
 }
 
 const (
