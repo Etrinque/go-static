@@ -20,8 +20,9 @@ type Parsed struct {
 }
 
 func NewParser(input []byte) *Parser {
+	var l *lexer.Lexer
 	return &Parser{
-		Lex: lexer.New(input),
+		Lex: l.New(input),
 	}
 }
 
