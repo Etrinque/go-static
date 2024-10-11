@@ -1,7 +1,8 @@
 package lexer
 
 import (
-	"strings"
+	"bytes"
+	"go-static/token"
 )
 
 /*
@@ -39,26 +40,15 @@ func (lex *Lexer) nextChar(char byte) {}
 
 func (lex *Lexer) peekChar() {}
 
-func (lex *Lexer) buildTag(char byte) []byte {
-	var tag []byte
-
-	tag = append(tag, char)
-
-	return tag
-}
-
-func (lex *Lexer) buildBlock(char byte) ([]byte, error) {
-	var builder strings.Builder
-	var block []byte
-
-	block = append(block, char)
-
-	_, err := builder.Write(block)
-	if err != nil {
-		return nil, err
+// checkToken iterates over slice of tags (tokens) to find and build a propper tag for passing into parser for node building
+func (lex *Lexer) checkToken() (bool, string) {
+	ch := lex.Char
+	for _, s := range token.TokenList {
+		if bytes.ContainsAny([]byte(s), string(ch)) {
+			return true, s
+		}
 	}
-
-	return []byte(builder.String()), nil
+	return false, ""
 }
 
 func (lex *Lexer) isAlpha(char byte) bool {
