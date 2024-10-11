@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"bytes"
 	"go-static/ast"
 	"go-static/lexer"
 	"os"
@@ -39,6 +40,34 @@ func ReadFile(path string) ([]byte, error) {
 		return nil, err
 	}
 	return buf, nil
+}
+
+// buildTag is responsible for creating the tag and its relavant information.
+func (p *Parser) buildTag(char byte) []byte {
+	var tag []byte
+
+	tag = append(tag, char)
+
+	return tag
+}
+
+// buildBlock is responsible for creating an array of content proceeding tags.
+// TODO: this should take a slice []bytes and append them iteratively dependent on tag and pass to buildNode()
+func (p *Parser) buildBlock(chars []byte) ([]byte, error) {
+	var buf bytes.Buffer
+
+	var block []byte
+
+	for ch := range chars {
+		block = append(block, chars[ch])
+	}
+
+	_, err := buf.Write(block)
+	if err != nil {
+		return nil, err
+	}
+
+	return block, nil
 }
 
 func buildNode(nodeType *ast.MDType, content []byte) *ast.MDNode {
