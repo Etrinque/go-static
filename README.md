@@ -35,5 +35,12 @@ Projects like:
 
 4. Finally the file is distributed to the website directory to be used immediately in hosting.
 
+## Build - Quick Start
+
+Details to come
+
+## Contributing 
+
+Contribution details to come.
 [^1]: Go-Static Illustration by Eric Trinque.
 [^2]: [Abstract Syntax Tree - Wiki](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
